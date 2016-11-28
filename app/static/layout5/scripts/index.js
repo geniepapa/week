@@ -221,7 +221,7 @@ var Index = function () {
 			    color: "#6c7b88"
 		  	}
 		});
-	}
+	};
 
 	var handleAmChartMap = function() {
 		// svg path for target icon
@@ -493,7 +493,7 @@ var Index = function () {
 		    }
 		  }
 		} );
-	}
+	};
 
 	var handleMorrisCharts = function() {
         if (Morris.EventEmitter) {
@@ -538,7 +538,7 @@ var Index = function () {
             });
 
         }
-    }
+    };
 
 	var handleSparklineCharts = function() {
         $("#sparkline_bar").sparkline([8, 9, 10, 11, 10, 10, 12, 10, 10, 11, 9, 12, 11], {
@@ -558,7 +558,7 @@ var Index = function () {
             barColor: '#5C9BD1',
             negBarColor: '#e02222'
         });
-    }
+    };
 
     return {
 

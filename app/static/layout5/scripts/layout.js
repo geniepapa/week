@@ -27,7 +27,7 @@ var Layout = function() {
         } else {
             $("body").removeClass("page-on-scroll");
         }
-    }
+    };
     
     // Handles active menu to avoid closing click to content
 

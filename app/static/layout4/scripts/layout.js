@@ -68,7 +68,7 @@ var Layout = function() {
                 if ($state && state) {
                     if ($state.is(state)) {
                         el = $(this);
-                        return;
+
                     }
                 } else {
                     var path = $(this).attr('href');
@@ -77,7 +77,7 @@ var Layout = function() {
                         path = path.toLowerCase();
                         if (path.length > 1 && url.substr(1, path.length - 1) == path.substr(1)) {
                             el = $(this);
-                            return;
+
                         }
                     }
                 }
@@ -108,11 +108,11 @@ var Layout = function() {
                     if ($state && state) {
                         if ($state.is(state)) {
                             match = true;
-                            return;
+
                         }
                     } else if ($(this).find(' > a').attr('href') === el.attr('href')) {
                         match = true;
-                        return;
+
                     }
                 });
  
@@ -495,7 +495,7 @@ var Layout = function() {
         },
 
         initContent: function() {
-            return; 
+
         },
 
         initFooter: function() {
@@ -555,7 +555,7 @@ var Layout = function() {
 
         //public function to fix the sidebar and content height accordingly
         fixContentHeight: function() {
-            return;
+
         },
 
         initFixedSidebarHoverEffect: function() {
