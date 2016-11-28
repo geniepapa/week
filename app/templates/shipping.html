@@ -1,0 +1,68 @@
+{% extends "base2.html" %}
+{% block nav %}
+     <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item  active open">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-diamond"></i>
+                                <span class="title">数据跟踪</span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  active open">
+                                    <a href="shipping" class="nav-link ">
+                                        <span class="title">船公司</span>
+                                        <span class="selected"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="wharf" class="nav-link ">
+                                        <span class="title">码头</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="yard" class="nav-link ">
+                                        <span class="title">堆场</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="express" class="nav-link ">
+                                        <span class="title">快递</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+{% endblock %}
+{% block pagecontent %}
+     <div class="row">
+        <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-directions font-green hide"></i>
+                        <form method="POST" role="form">
+                            {{ form.hidden_tag()}}
+                            <div class="row">
+                            <div class="col-md-4 col-xs-4">
+                                {{  form.ship_name(class="form-control",placeholder="船公司") }}
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                {{ form.bill_number(class="form-control",placeholder="提单号") }}
+                            </div>
+                            <div class="col-md-2  col-xs-2">
+                                {{ form.submit(class='btn  green btn-outline btn-circle btn-sm') }}
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <cod>{{ info }}</cod>
+                </div>
+            </div>
+        </div>
+     </div>
+
+{% endblock %}

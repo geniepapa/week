@@ -1,0 +1,37 @@
+{% extends "base2.html" %}
+{% block nav %}
+    <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item  active open">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-diamond"></i>
+                                <span class="title">数据跟踪</span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a href="shipping" class="nav-link ">
+                                        <span class="title">船公司</span>
+                                        <span class="selected"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="wharf" class="nav-link ">
+                                        <span class="title">码头</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item   active open">
+                                    <a href="yard" class="nav-link ">
+                                        <span class="title">堆场</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="express" class="nav-link ">
+                                        <span class="title">快递</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+{% endblock %}

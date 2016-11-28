@@ -1,0 +1,213 @@
+{% extends "base2.html" %}
+{% block nav %}
+     <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item  active open">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-diamond"></i>
+                                <span class="title">数据跟踪</span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a href="shipping" class="nav-link ">
+                                        <span class="title">船公司</span>
+                                        <span class="selected"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  active open">
+                                    <a href="wharf" class="nav-link ">
+                                        <span class="title">码头</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="yard" class="nav-link ">
+                                        <span class="title">堆场</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="express" class="nav-link ">
+                                        <span class="title">快递</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+{% endblock %}
+
+{% block pagecontent %}
+    <!--
+     <div class="row">
+         <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <span>例：JI HAI ZHI XING(船名) 16084S(航次)</span>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="row">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-directions font-green hide"></i>
+                        <form method="POST" role="form">
+                            {{ form.hidden_tag()}}
+                            <div class="row">
+                                <div class="col-md-6 col-xs-6">
+                                    {{  form.vessel(class="form-control",placeholder="船名") }}
+                                </div>
+                                <div class="col-md-4 col-xs-4">
+                                    {{ form.voyage(class="form-control",placeholder="航次") }}
+                                </div>
+                                <div class="col-md-2  col-xs-2">
+                                    {{ form.submit(class='btn  green btn-outline btn-circle btn-sm') }}
+                                </div>
+                            </div>
+                         </form>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
+                        <div class="timeline mt-timeline-square">
+                            <div class="events-wrapper">
+                                <div class="events" style="width: 1800px;">
+                                    <ol>
+                                        <li>
+                                            <a href="#0" data-date="{{ info.piling }}" class="border-after-grey bg-after-grey" style="left: 40px;">收箱开始</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0" data-date="{{ info.eta }}" class="border-after-blue bg-after-blue selected" style="left: 100px;">ETA</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0" data-date="{{ info.ata }}" class="border-after-blue bg-after-blue" style="left: 150px;">ATA</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0" data-date="{{ info.unpiling }}" class="border-after-grey bg-after-grey"   style="left: 280px;">收箱结束</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0" data-date="{{ info.etd }}" class="border-after-blue bg-after-blue" style="left: 350px;">ETD</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0" data-date="{{ info.atd }}" class="border-after-blue bg-after-blue" style="left: 400px;">ATD</a>
+                                        </li>
+                                    </ol>
+                                    <span class="filling-line bg-blue" aria-hidden="true" style="transform: scaleX(0.084158);"></span>
+                                </div>
+                                <!-- .events -->
+                            </div>
+                            <!-- .events-wrapper -->
+                            <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                <li>
+                                    <a href="#0" class="prev inactive btn blue md-skip">
+                                        <i class="fa fa-chevron-left"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#0" class="next btn blue md-skip">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- .cd-timeline-navigation -->
+                        </div>
+                        <!-- .timeline -->
+                        <div class="events-content">
+                            <ol>
+                                <li data-date="{{ info.piling }}">
+                                    <div class="mt-title">
+                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
+                                    </div>
+                                    <div class="mt-author">
+
+                                        <div class="mt-author-name">
+                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
+                                        </div>
+                                        <div class="mt-author-datetime font-grey-mint">{{ info.piling }}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <li class="selected" data-date="{{ info.eta }}">
+                                    <div class="mt-title">
+                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
+                                    </div>
+                                    <div class="mt-author">
+
+                                        <div class="mt-author-name">
+                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf }}</a>
+                                        </div>
+                                        <div class="mt-author-datetime font-grey-mint">{{ info.eta }}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <li data-date="{{ info.ata }}">
+                                    <div class="mt-title">
+                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
+                                    </div>
+                                    <div class="mt-author">
+
+                                        <div class="mt-author-name">
+                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
+                                        </div>
+                                        <div class="mt-author-datetime font-grey-mint">{{ info.ata }}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <li data-date="{{ info.unpiling }}">
+                                    <div class="mt-title">
+                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
+                                    </div>
+                                    <div class="mt-author">
+
+                                        <div class="mt-author-name">
+                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
+                                        </div>
+                                        <div class="mt-author-datetime font-grey-mint">{{ info.unpiling }}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <li data-date="{{ info.etd }}">
+                                    <div class="mt-title">
+                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
+                                    </div>
+                                    <div class="mt-author">
+
+                                        <div class="mt-author-name">
+                                            <a href="javascript:;" class="font-blue">{{ info.wharf  }}</a>
+                                        </div>
+                                        <div class="mt-author-datetime font-grey-mint">{{ info.etd }}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <li data-date="{{ info.atd }}">
+                                    <div class="mt-title">
+                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
+                                    </div>
+                                    <div class="mt-author">
+
+                                        <div class="mt-author-name">
+                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
+                                        </div>
+                                        <div class="mt-author-datetime font-grey-mint">{{ info.atd }}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+
+                            </ol>
+                        </div>
+                        <!-- .events-content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

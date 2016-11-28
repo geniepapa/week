@@ -1,0 +1,11 @@
+flask
+flask_bootstrap
+flask_script
+flask_wtf
+requests
+lxml
+simplejson
+cv2
+numpy
+selenium
+

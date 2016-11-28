@@ -1,0 +1,100 @@
+{% extends "base2.html" %}
+{% block nav %}
+     <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item  active open">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-diamond"></i>
+                                <span class="title">数据跟踪</span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a href="shipping" class="nav-link ">
+                                        <span class="title">船公司</span>
+                                        <span class="selected"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="wharf" class="nav-link ">
+                                        <span class="title">码头</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="yard" class="nav-link ">
+                                        <span class="title">堆场</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  active open">
+                                    <a href="express" class="nav-link ">
+                                        <span class="title">快递</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+{% endblock %}
+{% block pagecontent %}
+
+    <div class="row">
+
+        <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title tabbable-line">
+                    <div class="caption">
+                        <i class=" icon-social-twitter font-dark hide"></i>
+                        <form method="POST" role="form">
+                             {{ form.hidden_tag()}}
+                             <div class="row">
+                                <div class="col-md-4 col-xs-4">
+                                    {{  form.express_name(class="form-control",placeholder="快递公司") }}
+                                </div>
+                                <div class="col-md-6 col-xs-6">
+                                    {{ form.express_number(class="form-control",placeholder="快递单号") }}
+                                </div>
+                                <div class="col-md-2  col-xs-2">
+                                    {{ form.submit(class='btn  green btn-outline btn-circle btn-sm') }}
+                                </div>
+                            </div>
+                         </form>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="tab-content">
+                        {% if infos %}
+                        <div class="tab-pane active" id="tab_actions_pending">
+                            <!-- BEGIN: Actions -->
+                            <div class="mt-actions">
+                                {% for info in infos %}
+                                <div class="mt-action">
+                                    <div class="mt-action-body">
+                                        <div class="mt-action-row">
+                                            <div class="mt-action-info ">
+                                                <div class="mt-action-details ">
+                                                    <span class="mt-action-author">{{ info['local'] }}</span>
+                                                    <p class="mt-action-desc">{{ info['status'] }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="mt-action-datetime ">
+                                                <span class="mt-action-date">{{ info['process_date'] }}</span>
+                                                <span class="mt-action-dot bg-green"></span>
+                                                <span class="mt=action-time">{{ info['process_time'] }}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- END: Actions -->
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     </div>
+
+{% endblock %}
