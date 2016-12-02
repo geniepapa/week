@@ -24,4 +24,6 @@ def create_app(config_name):
     from .api_1_0 import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api/v1.0')
 
+    app.register_error_handler(500, lambda e: 'bad request!')
+
     return app
