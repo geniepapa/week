@@ -1,8 +1,10 @@
 import requests
 from lxml import etree
 
-#session_url = "http://homeport.apl.com/gentrack/trackingMain.do"
 content_url = "http://ebusiness.coscon.com/NewEBWeb/public/cargoTracking/cargoTracking.xhtml"
+
+routes_xpath = "//table[@id='actualLoadingInfo']/tbody/tr"
+container_xpath = "//table[@id='cargoTrackingContainerInfoStatus']/tbody/tr"
 
 
 def grab(bl_num='8013296880'):
@@ -32,16 +34,22 @@ def grab(bl_num='8013296880'):
 
 def html_parse(response):
 
-    routes_xpath = "//table[@id='actualLoadingInfo']/tbody/tr"
-    container_xpath = "//table[@id='cargoTrackingContainerInfoStatus']/tbody/tr"
+    routes_doc, containers_doc = get_docs(response.text)
+    return {'routing': get_routes(routes_doc), 'containers': get_containers(containers_doc)}
 
-    doc = etree.HTML(unicode.encode(response.text, encoding='utf-8'))
+
+def get_docs(content):
+
+    doc = etree.HTML(unicode.encode(content, encoding='utf-8'))
     containers_doc = doc.xpath(container_xpath)
     routes_doc = doc.xpath(routes_xpath)
 
-    routes = []
-    containers = []
+    return routes_doc, containers_doc
 
+
+def get_routes(routes_doc):
+
+    routes = []
     for route in routes_doc:
         route_td = route.getchildren()
         routes.append({
@@ -70,22 +78,26 @@ def html_parse(response):
             'estimate_departure_date': '',
             'actual_departure_date': ''
         })
+    return routes
 
+def get_containers(containers_doc):
+    containers = []
     for container in containers_doc:
         container_td = container.getchildren()
         containers.append({
             'number': container_td[1].find("div/a").attrib["title"],
             'seal_no': container_td[3].find("div/span").text,
             'status': container_td[5].find("div/span").text,
-            'type':  container_td[2].find("div/span").text[2:],
-            'size':  container_td[2].find("div/span").text[:2],
+            'type': container_td[2].find("div/span").text[2:],
+            'size': container_td[2].find("div/span").text[:2],
             'height': '',
             'location': container_td[4].find("div/span").text,
             'container_load_date': '',
             'container_discharge_date': container_td[6].find("div/span").text
         })
+    return containers
 
-    return {'routing': routes, 'containers': containers}
+
 
 
 

@@ -1,7 +1,6 @@
 import requests
 from lxml import etree
 
-#session_url = "http://homeport.apl.com/gentrack/trackingMain.do"
 content_url = "http://www.cma-cgm.com/ebusiness/tracking/search"
 
 
