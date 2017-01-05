@@ -19,6 +19,18 @@ def get_image(path, url):
     cv2.imwrite(path, img_denoising_second)
 
 
+def get_image_raw(path, url):
+    response = urllib2.urlopen(url)
+    img_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+    img_grep = cv2.imdecode(img_array, 0)
+
+    kernel = np.ones((4, 4), np.uint8)
+    img_erode = cv2.erode(img_grep, kernel)
+    img_threshold = cv2.threshold(img_erode, 1, 255, cv2.THRESH_BINARY)[1]
+
+    cv2.imwrite(path, img_threshold)
+
+
 def get_image_batch(path, url):
 
     for i in range(1000):
@@ -32,7 +44,7 @@ def get_image_from_response(path, response):
     cv2.imwrite(path, img)
 
 
-def image_to_string(img, lang='eng' ,cleanup=True):
+def image_to_string(img, lang='eng', cleanup=True):
     subprocess.check_output('tesseract ' + img + ' ' + img + ' -l '+lang+' ',
                             stderr=subprocess.STDOUT,
                             shell=True)
@@ -46,9 +58,13 @@ def image_to_string(img, lang='eng' ,cleanup=True):
 
 def ocr(url):
     image = "captcha.png"
-    get_image(image, url)
-    result = image_to_string(image, lang='maersk')
-    result.replace(' ', '')
+    result = ''
+    times = 10
+    while len(result) != 5 and --times > 0:
+        get_image_raw(image, url)
+        '''lang=maersk'''
+        result = image_to_string(image)
+        result.replace(' ', '').strip()
     return result
 
 
@@ -56,6 +72,7 @@ def orc_response(response):
     image = "captcha.png"
     get_image_from_response(image, response)
     result = image_to_string(image)
+
     result.replace(' ', '')
     return result
 

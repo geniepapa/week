@@ -63,10 +63,14 @@
                         <form method="POST" role="form">
                             {{ form.hidden_tag()}}
                             <div class="row">
-                                <div class="col-md-6 col-xs-6">
-                                    {{  form.vessel(class="form-control",placeholder="船名") }}
+
+                                <div class="col-md-3 col-xs-3">
+                                    {{  form.port(class="form-control",placeholder="港口") }}
                                 </div>
                                 <div class="col-md-4 col-xs-4">
+                                    {{  form.vessel(class="form-control",placeholder="船名") }}
+                                </div>
+                                <div class="col-md-3 col-xs-3">
                                     {{ form.voyage(class="form-control",placeholder="航次") }}
                                 </div>
                                 <div class="col-md-2  col-xs-2">
@@ -77,136 +81,8 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
-                        <div class="timeline mt-timeline-square">
-                            <div class="events-wrapper">
-                                <div class="events" style="width: 1800px;">
-                                    <ol>
-                                        <li>
-                                            <a href="#0" data-date="{{ info.piling }}" class="border-after-grey bg-after-grey" style="left: 40px;">收箱开始</a>
-                                        </li>
-                                        <li>
-                                            <a href="#0" data-date="{{ info.eta }}" class="border-after-blue bg-after-blue selected" style="left: 100px;">ETA</a>
-                                        </li>
-                                        <li>
-                                            <a href="#0" data-date="{{ info.ata }}" class="border-after-blue bg-after-blue" style="left: 150px;">ATA</a>
-                                        </li>
-                                        <li>
-                                            <a href="#0" data-date="{{ info.unpiling }}" class="border-after-grey bg-after-grey"   style="left: 280px;">收箱结束</a>
-                                        </li>
-                                        <li>
-                                            <a href="#0" data-date="{{ info.etd }}" class="border-after-blue bg-after-blue" style="left: 350px;">ETD</a>
-                                        </li>
-                                        <li>
-                                            <a href="#0" data-date="{{ info.atd }}" class="border-after-blue bg-after-blue" style="left: 400px;">ATD</a>
-                                        </li>
-                                    </ol>
-                                    <span class="filling-line bg-blue" aria-hidden="true" style="transform: scaleX(0.084158);"></span>
-                                </div>
-                                <!-- .events -->
-                            </div>
-                            <!-- .events-wrapper -->
-                            <ul class="cd-timeline-navigation mt-ht-nav-icon">
-                                <li>
-                                    <a href="#0" class="prev inactive btn blue md-skip">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="next btn blue md-skip">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- .cd-timeline-navigation -->
-                        </div>
-                        <!-- .timeline -->
-                        <div class="events-content">
-                            <ol>
-                                <li data-date="{{ info.piling }}">
-                                    <div class="mt-title">
-                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
-                                    </div>
-                                    <div class="mt-author">
-
-                                        <div class="mt-author-name">
-                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
-                                        </div>
-                                        <div class="mt-author-datetime font-grey-mint">{{ info.piling }}</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li class="selected" data-date="{{ info.eta }}">
-                                    <div class="mt-title">
-                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
-                                    </div>
-                                    <div class="mt-author">
-
-                                        <div class="mt-author-name">
-                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf }}</a>
-                                        </div>
-                                        <div class="mt-author-datetime font-grey-mint">{{ info.eta }}</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li data-date="{{ info.ata }}">
-                                    <div class="mt-title">
-                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
-                                    </div>
-                                    <div class="mt-author">
-
-                                        <div class="mt-author-name">
-                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
-                                        </div>
-                                        <div class="mt-author-datetime font-grey-mint">{{ info.ata }}</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li data-date="{{ info.unpiling }}">
-                                    <div class="mt-title">
-                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
-                                    </div>
-                                    <div class="mt-author">
-
-                                        <div class="mt-author-name">
-                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
-                                        </div>
-                                        <div class="mt-author-datetime font-grey-mint">{{ info.unpiling }}</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li data-date="{{ info.etd }}">
-                                    <div class="mt-title">
-                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
-                                    </div>
-                                    <div class="mt-author">
-
-                                        <div class="mt-author-name">
-                                            <a href="javascript:;" class="font-blue">{{ info.wharf  }}</a>
-                                        </div>
-                                        <div class="mt-author-datetime font-grey-mint">{{ info.etd }}</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li data-date="{{ info.atd }}">
-                                    <div class="mt-title">
-                                        <h2 class="mt-content-title">{{ info.ship }}</h2>
-                                    </div>
-                                    <div class="mt-author">
-
-                                        <div class="mt-author-name">
-                                            <a href="javascript:;" class="font-blue-madison">{{ info.wharf  }}</a>
-                                        </div>
-                                        <div class="mt-author-datetime font-grey-mint">{{ info.atd }}</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </li>
-
-                            </ol>
-                        </div>
-                        <!-- .events-content -->
-                    </div>
-                </div>
+                       <cod>{{ info }}</cod>
+                 </div>
             </div>
         </div>
     </div>

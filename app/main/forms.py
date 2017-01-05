@@ -5,12 +5,14 @@ from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 from .. import ship
+from .. import wharf
 from .. import express
 
 
 class WharfForm(FlaskForm):
-    vessel = StringField(u"船名", validators=[DataRequired()])
-    voyage = StringField(u"航次", validators=[DataRequired()])
+    port = SelectField(u"船公司", choices=[(s, str.upper(s)) for s in wharf.sources])
+    vessel = StringField(u"船名")
+    voyage = StringField(u"航次")
     submit = SubmitField(u"查  询")
 
 

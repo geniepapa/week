@@ -14,8 +14,11 @@ def grab(bl_num='NAM2486916'):
     # session.get(session_url)
     response = session.get(content_url, params=data)
 
+    print response.text
+
     if response.status_code == 200:
         cma_doc = etree.HTML(unicode.encode(response.text, encoding='utf-8'))
+
 
         containers_doc = cma_doc.xpath("//tr[@class='container-row']")
         routes_doc = cma_doc.xpath("//tr[@class='small-data-info']")
@@ -27,8 +30,8 @@ def grab(bl_num='NAM2486916'):
                     routes.append({
                         'route_name': 'Discharge Port',
                         'location': container_td[3].text.strip(),
-                        'vessel': container_td[8].getchildren()[0].text,
-                        'voyage': container_td[7].getchildren()[0].text,
+                        'vessel': container_td[8].text.strip(),
+                        'voyage': container_td[7].text,
                         'call_sign': '',
                         'estimate_arrival_date': '',
                         'actual_arrival_date': '',

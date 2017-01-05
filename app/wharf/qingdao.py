@@ -24,12 +24,12 @@ def grab(vessel='JI HAI ZHI XING', voyage='16094S'):
     html = etree.HTML(response.text)
     session.close()
 
-    infos = []
+    info = []
 
     columns = html.xpath('//table')[7][2].getchildren()
 
     if columns and len(columns) > 2:
-        infos.append({
+        info.append({
             'status': columns[8].text,
             'wharf': columns[0].find('b').text,
             'local': columns[15].text,
@@ -42,4 +42,4 @@ def grab(vessel='JI HAI ZHI XING', voyage='16094S'):
             'unpiling': columns[14].text
         })
 
-    return infos
+    return info
