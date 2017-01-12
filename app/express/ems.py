@@ -25,7 +25,7 @@ def grab(bl_num='9735064274801'):
     if response.status_code == 200:
         ems_doc = etree.HTML(unicode.encode(response.text, encoding='utf-8'))
         contents = ems_doc.xpath("//table[@class='showTable']/tr")
-        # print(contents)
+        print(contents)
         pre_process_date = ''
         for content in contents:
             td_elements = content.getchildren()

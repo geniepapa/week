@@ -29,18 +29,19 @@ def grab(bl_num='086422833'):
                 arrival_date = route_td[4].text.strip()
                 departure_date = route_td[5].text.strip()
 
-                routes.append({
-                    'route_name': route_td[1].text.strip(),
-                    'location': route_td[2].getchildren()[0].text.strip(),
-                    'vessel': '{0} {1}'.format(ship, vessel),
-                    'voyage': voyage,
-                    'estimate_arrival_date': arrival_date[-1] in ['P', 'E'] and arrival_date[0:-2] or '',
-                    'actual_arrival_date': arrival_date[-1] == 'A' and arrival_date[0:-2] or '',
-                    'container_discharge_date': arrival_date[-1] == 'D' and arrival_date[0:-2] or '',
-                    'container_load_date': departure_date[-1] == 'L' and departure_date[0:-2] or '',
-                    'estimate_departure_date':  departure_date[-1] in ['P', 'E'] and departure_date[0:-2] or '',
-                    'actual_departure_date':  departure_date[-1] == 'A' and departure_date[0:-2] or '',
-                })
+                if route_td[1].text.strip() in ['Load Port', 'Discharge Port']:
+                    routes.append({
+                        'route_name': route_td[1].text.strip(),
+                        'location': route_td[2].getchildren()[0].text.strip(),
+                        'vessel': '{0} {1}'.format(ship, vessel),
+                        'voyage': voyage,
+                        'estimate_arrival_date': arrival_date[-1] in ['P', 'E'] and arrival_date[0:-2] or '',
+                        'actual_arrival_date': arrival_date[-1] == 'A' and arrival_date[0:-2] or '',
+                        'container_discharge_date': arrival_date[-1] == 'D' and arrival_date[0:-2] or '',
+                        'container_load_date': departure_date[-1] == 'L' and departure_date[0:-2] or '',
+                        'estimate_departure_date':  departure_date[-1] in ['P', 'E'] and departure_date[0:-2] or '',
+                        'actual_departure_date':  departure_date[-1] == 'A' and departure_date[0:-2] or '',
+                    })
         for index, container in enumerate(containers_doc):
             if index > 0:
                 container_td = container.getchildren()

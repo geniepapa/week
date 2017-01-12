@@ -38,9 +38,8 @@
 {% block pagecontent %}
 
     <div class="row">
-
         <div class="col-lg-6 col-xs-12 col-sm-12">
-            <div class="portlet light bordered">
+            <div class="portlet light portlet-fit">
                 <div class="portlet-title tabbable-line">
                     <div class="caption">
                         <i class=" icon-social-twitter font-dark hide"></i>
@@ -60,6 +59,13 @@
                          </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    {% if infos %}
+    <div class="row">
+        <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="portlet light bordered">
                 <div class="portlet-body">
                     <div class="tab-content">
                         {% if infos %}
@@ -96,5 +102,7 @@
         </div>
 
      </div>
+    {% endif %}
+
 
 {% endblock %}

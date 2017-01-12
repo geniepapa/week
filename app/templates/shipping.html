@@ -37,8 +37,8 @@
 {% endblock %}
 {% block pagecontent %}
      <div class="row">
-        <div class="col-lg-6 col-xs-12 col-sm-12">
-            <div class="portlet light portlet-fit bordered">
+        <div class="col-lg-8 col-xs-12 col-sm-12">
+            <div class="portlet light portlet-fit">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-directions font-green hide"></i>
@@ -58,11 +58,86 @@
                         </form>
                     </div>
                 </div>
-                <div class="portlet-body">
-                    <cod>{{ info }}</cod>
-                </div>
             </div>
         </div>
      </div>
+    {% if info %}
+    <div class="row">
+        <div class="col-lg-8 col-xs-12 col-sm-12">
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-directions font-green hide"></i>
+                        <span class="caption-subject bold font-dark uppercase"> {{info['routing'][0]['vessel']}}</span>
+                        <span class="caption-helper">{{info['routing'][0]['voyage']}}</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+
+                    <div class="row number-stats margin-bottom-30">
+                        {% for route in info['routing']  %}
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            {% if route['route_name'] == 'Load Port' %}
+                            <div class="stat-left">
+                                <div class="stat-number">
+                                    <div class="title"> {{ route['estimate_departure_date'] }} </div>
+                                    <div class="number"> {{ route['location'] }} </div>
+                                </div>
+                            </div>
+                            {% elif route['route_name'] == 'Discharge Port' %}
+                             <div class="stat-right">
+                                <div class="stat-number">
+                                    <div class="title"> {{ route['estimate_arrival_date'] }} </div>
+                                    <div class="number"> {{ route['location'] }} </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 箱号 </th>
+                                    <th> 状态 </th>
+                                    <th> 类型 </th>
+                                    <th> 尺寸 </th>
+                                    <!--<th> 高度 </th>
+                                    <th> 港口 </th>
+                                    <th> 到港时间 </th>
+                                    <th> 离港时间 </th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for container in info['containers']  %}
+                                <tr>
+                                    <td> {{ container['number'] }}</td>
+                                    <td>  <span class="label label-sm label-success">{{ container['status']  }}</span> </td>
+                                    <td> {{ container['type']  }}</td>
+                                    <td> {{ container['size']  }}</td>
+                                    <!--<td> {{ container['height']  }}</td>
+                                    <td> {{ container['location']  }}</td>
+                                    <td> {{ container['container_load_date']  }}</td>
+                                    <td> {{ container['container_discharge_date']  }}</td>-->
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+     </div>
+     {% endif %}
+
+    <div class="row">
+        <code>{{ info }}</code>
+    </div>
+
 
 {% endblock %}

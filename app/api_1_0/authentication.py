@@ -1,4 +1,5 @@
 from flask import jsonify, g
+
 from . import auth, api
 from ..models import User
 

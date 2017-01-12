@@ -14,7 +14,7 @@ def grab(bl_num='NAM2486916'):
     # session.get(session_url)
     response = session.get(content_url, params=data)
 
-    print response.text
+
 
     if response.status_code == 200:
         cma_doc = etree.HTML(unicode.encode(response.text, encoding='utf-8'))

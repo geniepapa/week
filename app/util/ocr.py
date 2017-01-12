@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import os
 import subprocess
 import urllib2
@@ -19,22 +21,26 @@ def get_image(path, url):
     cv2.imwrite(path, img_denoising_second)
 
 
-def get_image_raw(path, url):
-    response = urllib2.urlopen(url)
-    img_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
-    img_grep = cv2.imdecode(img_array, 0)
-
-    kernel = np.ones((4, 4), np.uint8)
-    img_erode = cv2.erode(img_grep, kernel)
-    img_threshold = cv2.threshold(img_erode, 1, 255, cv2.THRESH_BINARY)[1]
-
-    cv2.imwrite(path, img_threshold)
-
-
 def get_image_batch(path, url):
 
     for i in range(1000):
         get_image(path+'/'+str(i+255)+'.png', url)
+
+
+def get_image_raw(path, url):
+
+    response = urllib2.urlopen(url)
+    img_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+    img_grep = cv2.imdecode(img_array, 0)
+
+    '''腐蚀'''
+    kernel = np.ones((4, 4), np.uint8)
+    img_erode = cv2.erode(img_grep, kernel)
+
+    '''二值化'''
+    img_threshold = cv2.threshold(img_erode, 1, 255, cv2.THRESH_BINARY)[1]
+
+    cv2.imwrite(path, img_threshold)
 
 
 def get_image_from_response(path, response):
@@ -74,6 +80,17 @@ def orc_response(response):
     result = image_to_string(image)
 
     result.replace(' ', '')
+    return result
+
+
+def orc_url(url):
+    image = "captcha.png"
+    result = ''
+    times = 10
+    while len(result) != 5 and --times > 0:
+        get_image_raw(image, url)
+        result = image_to_string(image)
+        result.replace(' ', '').strip()
     return result
 
 

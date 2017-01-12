@@ -19,7 +19,7 @@ def grab(bl_num='MSCUOL252100'):
     elem_output = WebDriverWait(driver, 10).\
         until(ec.presence_of_element_located((By.ID, "ctl00_ctl00_plcMain_plcMain_rptBOL_ctl00_pnlBOLContent")))
 
-    print(elem_output.get_attribute("innerHTML"))
+    # print(elem_output.get_attribute("innerHTML"))
     info = html_parse(elem_output.get_attribute("innerHTML"))
 
     driver.close()
@@ -34,6 +34,7 @@ def html_parse(response):
 
 container_xpath = "//dl[@class='containerAccordion']//dd"
 routes_xpath = "//table[1]//tr"
+
 
 
 def get_docs(content):
@@ -71,7 +72,7 @@ def get_routes(routes_doc):
                 'vessel': '',
                 'voyage': '',
                 'call_sign': '',
-                'estimate_arrival_date': '',
+                'estimate_arrival_date': 'unknown',
                 'actual_arrival_date': '',
                 'container_load_date': '',
                 'container_discharge_date': '',
@@ -86,7 +87,7 @@ def get_containers(containers_doc):
     for index, container in enumerate(containers_doc):
 
         containers.append({
-            'number':  container.find('a').text,
+            'number':  container.find('a').text[len('Container:'):],
             'seal_no': '',
             'status': '',
             'type': container.find('div/table/tbody[1]/tr/td[1]/span').text.strip()[3:],

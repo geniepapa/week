@@ -56,7 +56,7 @@ def get_routes(routes_doc):
                 'vessel': "{0} {1}".format(vessel_part1, vessel_part2),
                 'voyage': voyage.strip(),
                 'call_sign': '',
-                'estimate_arrival_date': '',
+                'estimate_arrival_date': route_td[7].text.strip(),
                 'actual_arrival_date': '',
                 'container_load_date': route_td[7].text.strip(),
                 'container_discharge_date': '',
@@ -73,7 +73,7 @@ def get_routes(routes_doc):
                 'actual_arrival_date': '',
                 'container_load_date': '',
                 'container_discharge_date': '',
-                'estimate_departure_date': '',
+                'estimate_departure_date': 'unknown',
                 'actual_departure_date': ''
             })
     return routes
