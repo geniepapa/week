@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import requests
-from app.util.ocr import orc_response
+from app.util.ocr import ocr_response
 from lxml import etree
 import simplejson as json
 
@@ -11,7 +11,7 @@ def grab(bl_num='9735064274801'):
 
     session.get("http://www.11183.com.cn/mailtracking/you_jian_cha_xun.html")
     code_response = session.get("http://www.11183.com.cn/ems/rand")
-    captcha_num = orc_response(code_response)
+    captcha_num = ocr_response(code_response)
 
     print captcha_num
 

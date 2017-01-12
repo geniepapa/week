@@ -1,14 +1,12 @@
 # coding: utf-8
 
-import requests
 from flask import render_template
-from lxml import etree
+
 
 from ..ship import sources as ship_sources
 from forms import WharfForm, ShippingForm, ExpressForm
 from . import main
 from ..express import sources as express_sources
-from ..util.ocr import orc_response
 from ..wharf import sources as wharf_sources
 
 
@@ -58,3 +56,5 @@ def express():
         else:
             infos = express_sources[form.express_name.data.encode("utf-8")].grab(form.express_number.data.encode("utf-8"))
     return render_template('express.html', form=form, infos=infos)
+
+

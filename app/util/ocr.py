@@ -74,7 +74,7 @@ def ocr(url):
     return result
 
 
-def orc_response(response):
+def ocr_response(response):
     image = "captcha.png"
     get_image_from_response(image, response)
     result = image_to_string(image)
@@ -83,14 +83,33 @@ def orc_response(response):
     return result
 
 
-def orc_url(url):
+def ocr_url(url):
     image = "captcha.png"
-    result = ''
-    times = 10
-    while len(result) != 5 and --times > 0:
-        get_image_raw(image, url)
-        result = image_to_string(image)
-        result.replace(' ', '').strip()
+    # result = ''
+    # times = 10
+    # while len(result) != 5 and --times > 0:
+
+    response = urllib2.urlopen(url)
+    img_array = np.asarray(bytearray(response.read()), dtype=np.uint8)
+    img_grep = cv2.imdecode(img_array, 0)
+
+    img_grep[:2, :] = 255
+    img_grep[29:, :] = 255
+    img_grep[:, :4] = 255
+    img_grep[:, 86:] = 255
+
+    img_threshold = cv2.threshold(img_grep, 128, 255, cv2.THRESH_BINARY)[1]
+    cv2.imwrite(image, img_threshold)
+
+    result = image_to_string(image)
+    result.replace(' ', '').strip()
+
+
+
+    print result
+
     return result
 
+if __name__ == '__main__':
+   capatch = ocr_url("http://www.qingdao-port.net/market/getKaptchaImage.do?timestamp=1484223010551")
 
