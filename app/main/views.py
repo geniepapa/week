@@ -4,7 +4,7 @@ from flask import render_template
 
 
 from ..ship import sources as ship_sources
-from forms import WharfForm, ShippingForm, ExpressForm
+from forms import WharfBillForm, WharfShipForm, ShippingForm, ExpressForm
 from . import main
 from ..express import sources as express_sources
 from ..wharf import sources as wharf_sources
@@ -30,7 +30,7 @@ def shipping():
 
 @main.route('/wharf/ship', methods=['GET', 'POST'])
 def wharf_ship():
-    form = WharfForm()
+    form = WharfShipForm()
     info = None
     if form.validate_on_submit():
         if form.vessel.data == '':
@@ -39,26 +39,27 @@ def wharf_ship():
             info = wharf_sources[form.port.data.encode("utf-8")]\
                 .grab_ship(form.vessel.data.encode("utf-8"), form.voyage.data.encode("utf-8"))
 
-    return render_template('wharf.html', form=form, info=info)
+    return render_template('wharf_ship.html', form=form, info=info)
 
 
 @main.route('/wharf/bill', methods=['GET', 'POST'])
 def wharf_bill():
-    form = WharfForm()
+    form = WharfBillForm()
     info = None
     if form.validate_on_submit():
-        if form.vessel.data == '':
+        if form.bill.data == '':
             info = wharf_sources[form.port.data.encode("utf-8")] .grab_bill()
         else:
             info = wharf_sources[form.port.data.encode("utf-8")]\
                 .grab_bill(form.bill.data.encode("utf-8"))
 
-    return render_template('wharf.html', form=form, info=info)
+    return render_template('wharf_bill.html', form=form, info=info)
 
 
 @main.route('/yard', methods=['GET', 'POST'])
 def yard():
     return render_template('yard.html')
+
 
 @main.route('/express', methods=['GET', 'POST'])
 def express():

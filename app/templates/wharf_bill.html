@@ -60,10 +60,7 @@
                                     {{  form.port(class="form-control",placeholder="港口") }}
                                 </div>
                                 <div class="col-md-4 col-xs-4">
-                                    {{  form.vessel(class="form-control",placeholder="船名") }}
-                                </div>
-                                <div class="col-md-3 col-xs-3">
-                                    {{ form.voyage(class="form-control",placeholder="航次") }}
+                                    {{  form.bill(class="form-control",placeholder="提单号") }}
                                 </div>
                                 <div class="col-md-2  col-xs-2">
                                     {{ form.submit(class='btn  green btn-outline btn-circle btn-sm') }}
@@ -80,37 +77,7 @@
         <div class="col-lg-10 col-xs-12 col-sm-12">
             <div class="portlet light portlet-fit bordered ">
                 <div class="portlet-body">
-                    <table class="table table-hover table-light">
-                            <thead>
-                                <tr>
-                                    <th> 码头名称 </th>
-                                    <th> 预计到港时间 </th>
-                                    <th> 预计离港时间 </th>
-                                    <th> 实际到港时间 </th>
-                                    <th> 实际离港时间 </th>
-                                    <th> 抵港状态 </th>
-                                    <th> 泊位 </th>
-                                    <th> 关区 </th>
-                                    <th> 承运人 </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for mtcq in info['mtcqList']  %}
-                                <tr>
-                                    <td> {{ mtcq['MTMC'] }}</td>
-                                    <td>  {{ mtcq['ETA']  }} </td>
-                                    <td> {{ mtcq['ETD']  }}</td>
-                                    <td> {{ mtcq['SJDGSJ']  }}</td>
-                                    <td> {{ mtcq['SJLGSJ']  }}</td>
-                                    <td> <span class="label label-sm label-success">{{ mtcq['DGBZMC'] }}</span></td>
-                                    <td> {{ mtcq['BWDM1']  }}</td>
-                                    <td> {{ mtcq['GQDM']  }}</td>
-                                    <td> {{ mtcq['CYR']  }}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
+                    <cod>{{ info }}</cod>
                  </div>
             </div>
         </div>
