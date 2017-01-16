@@ -3,16 +3,7 @@
 import os
 import subprocess
 import requests
-from app.util.ocr import ocr_response
-from lxml import etree
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
 import cv2
-import re
-import time
-import pprint
 import numpy as np
 
 import simplejson as json
@@ -57,17 +48,17 @@ def image_to_string(img, lang='eng', cleanup=True):
 
 def grab_ship(vessel='JI HAI ZHI XING', voyage='15007N'):
     url = "http://track.qingdao-port.net/dccx"
-    params = "http://track.qingdao-port.net/logistics/singleship/querySingleShip?YWCM=" + vessel + "&CKHC=" + voyage
-    return search(url, params)
+    query = "http://track.qingdao-port.net/logistics/singleship/querySingleShip?YWCM=" + vessel + "&CKHC=" + voyage
+    return search(url, query)
 
 
 def grab_bill(bill='PASU5136190180'):
     url = "http://track.qingdao-port.net/wmdp"
-    params = "/queryWmdp?tdhType=ZTDH&jckType=NONE&value="+bill
-    return search(url, params)
+    query = "http://track.qingdao-port.net/logistics/wmdp/queryWmdp?tdhType=ZTDH&jckType=NONE&value="+bill
+    return search(url, query)
 
 
-def search(url, params):
+def search(url, query):
     result = None
 
     # session = requests.session()
@@ -100,7 +91,7 @@ def search(url, params):
             if json_login["success"] == True:
                 qingdao_session.get("http://www.qingdao-port.net")
                 qingdao_session.get(url)
-                result_response = qingdao_session.post(url+params)
+                result_response = qingdao_session.post(query)
                 result = json.loads(result_response.text)
                 qingdao_session.get("http://www.qingdao-port.net/page/logout.do")
                 break

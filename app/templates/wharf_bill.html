@@ -74,9 +74,207 @@
     </div>
     {% if info %}
      <div class="row">
-        <div class="col-lg-10 col-xs-12 col-sm-12">
+        <div class="col-lg-12 col-xs-12 col-sm-12">
+
             <div class="portlet light portlet-fit bordered ">
+                <div class="portlet-title">
+                    <span class="caption-subject bold uppercase font-dark">码头信息</span>
+                </div>
                 <div class="portlet-body">
+                    <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 码头名称 </th>
+                                    <th> 中文船名 </th>
+                                    <th> 英文船名 </th>
+                                    <th> 航次 </th>
+                                    <th> 卸货港 </th>
+                                    <th> 箱站 </th>
+                                    <th> 箱号 </th>
+                                    <th> 箱属 </th>
+                                    <th> 尺寸 </th>
+                                    <th> 箱型 </th>
+                                    <th> 铅封号 </th>
+                                    <th> 放行 </th>
+                                    <th> 状态 </th>
+                                    <th> 入港时间 </th>
+                                    <th> 装船时间 </th>
+                                    <th> 堆存天数 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for mtxx in info['mtxxList']  %}
+                                <tr>
+                                    <td> {{ mtxx['MTMC'] }}</td>
+                                    <td>  {{ mtxx['CKZWCM']  }} </td>
+                                    <td> {{ mtxx['CKYWCM']  }}</td>
+                                    <td> {{ mtxx['CKHC']  }}</td>
+                                    <td> {{ mtxx['XHGYM']  }}</td>
+                                    <td> {{ mtxx['XZDM'] }}</td>
+                                    <td> {{ mtxx['XH']  }}</td>
+                                    <td> {{ mtxx['XSGSM']  }}</td>
+                                    <td> {{ mtxx['CC']  }}</td>
+                                    <td> {{ mtxx['XX'] }}</td>
+                                    <td>  {{ mtxx['QFH1']  }} </td>
+                                    <td> {{ mtxx['FXBZ']  }}</td>
+                                    <td><span class="label label-sm label-success"> {{ mtxx['DQZTMC']  }}</span></td>
+                                    <td> {{ mtxx['SJRGSJ']  }}</td>
+                                    <td> {{ mtxx['SJCGSJ'] }}</td>
+                                    <td> {{ mtxx['DCT']  }}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                 </div>
+            </div>
+
+            <div class="portlet light portlet-fit bordered ">
+                <div class="portlet-title">
+                    <span class="caption-subject bold uppercase font-dark">装箱单信息</span>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 码头名称 </th>
+                                    <th> 中文船名 </th>
+                                    <th> 英文船名 </th>
+                                    <th> 航次 </th>
+                                    <th> 卸货港 </th>
+                                    <th> 箱站 </th>
+                                    <th> 箱号 </th>
+                                    <th> 箱属 </th>
+                                    <th> 尺寸 </th>
+                                    <th> 箱型 </th>
+                                    <th> 分单号 </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for zxd in info['zxdList']  %}
+                                <tr>
+                                    <td> {{ zxd['MTMC'] }}</td>
+                                    <td> {{ zxd['ZWCM']  }} </td>
+                                    <td> {{ zxd['YWCM']  }}</td>
+                                    <td> {{ zxd['HCHC']  }}</td>
+                                    <td> {{ zxd['XHGM']  }}</td>
+                                    <td> {{ zxd['XZDM'] }}</td>
+                                    <td> {{ zxd['XH']  }}</td>
+                                    <td> {{ zxd['XSGSM']  }}</td>
+                                    <td> {{ zxd['CC']  }}</td>
+                                    <td> {{ zxd['XX']  }}</td>
+                                    <td> {{ zxd['TDH']  }}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                 </div>
+            </div>
+
+            <div class="portlet light portlet-fit bordered ">
+                <div class="portlet-title">
+                    <span class="caption-subject bold uppercase font-dark">运抵报告</span>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 码头名称 </th>
+                                    <th> IMO号 </th>
+                                    <th> 英文船名 </th>
+                                    <th> 航次 </th>
+                                    <th> 卸货港 </th>
+                                    <th> 箱站 </th>
+                                    <th> 关区 </th>
+                                    <th> 箱号 </th>
+                                    <th> 卸货地到达时间 </th>
+                                    <th> 海关发送时间 </th>
+                                    <th> 海关回执时间 </th>
+                                    <th> 海关回执描述 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ydbg in info['ydbgList']  %}
+                                <tr>
+                                    <td> {{ ydbg['FSDW'] }}</td>
+                                    <td>  {{ ydbg['CIMO']  }} </td>
+                                    <td>  {{ ydbg['YWCM']  }} </td>
+                                    <td> {{ ydbg['HCHBBH'] }}</td>
+
+                                    <td>  {{ ydbg['XHDDM']  }} </td>
+                                    <td> {{ ydbg['SBDHGDM']  }}</td>
+                                    <td> {{ ydbg['XHDGQDM']  }}</td>
+                                    <td> {{ ydbg['XH']  }}</td>
+
+                                    <td>{{ ydbg['XHDDDSJ'] }}</td>
+                                    <td> {{ ydbg['IMPORT_TIME']  }}</td>
+                                    <td> {{ ydbg['HZSJ']  }}</td>
+                                    <td>  <span class="label label-sm label-success">{{ ydbg['HZMS']}}</span></td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                 </div>
+            </div>
+
+            <!--<div class="portlet light portlet-fit bordered ">
+                <div class="portlet-title">
+                    <span class="caption-subject bold uppercase font-dark">报关单放行</span>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 码头名称 </th>
+                                    <th> 预计到港时间 </th>
+                                    <th> 预计离港时间 </th>
+                                    <th> 实际到港时间 </th>
+                                    <th> 实际离港时间 </th>
+                                    <th> 抵港状态 </th>
+                                    <th> 泊位 </th>
+                                    <th> 关区 </th>
+                                    <th> 承运人 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                bgdfx in info['bgdfxList']
+                            </tbody>
+                        </table>
+                 </div>
+            </div>
+
+            <div class="portlet light portlet-fit bordered ">
+                <div class="portlet-title">
+                    <span class="caption-subject bold uppercase font-dark">舱单装载放行</span>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 码头名称 </th>
+                                    <th> 预计到港时间 </th>
+                                    <th> 预计离港时间 </th>
+                                    <th> 实际到港时间 </th>
+                                    <th> 实际离港时间 </th>
+                                    <th> 抵港状态 </th>
+                                    <th> 泊位 </th>
+                                    <th> 关区 </th>
+                                    <th> 承运人 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                zzfx in info['zzfxList']
+                            </tbody>
+                        </table>
+                 </div>
+            </div>-->
+            <div class="portlet light portlet-fit bordered ">
+
+                <div class="portlet-body">
+
                     <cod>{{ info }}</cod>
                  </div>
             </div>
