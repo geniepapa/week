@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fce9b594-b271-4985-b502-733c27c42338" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/wharf_bill.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/wharf_ship.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main/views.py" afterPath="$PROJECT_DIR$/app/main/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/express.html" afterPath="$PROJECT_DIR$/app/templates/express.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/shipping.html" afterPath="$PROJECT_DIR$/app/templates/shipping.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/wharf.html" afterPath="$PROJECT_DIR$/app/templates/wharf.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/wharf/qingdao.py" afterPath="$PROJECT_DIR$/app/wharf/qingdao.py" />
     </list>
     <ignored path="Week.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +51,8 @@
       <file leaf-file-name="qingdao.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/wharf/qingdao.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="102" column="66" selection-start-line="102" selection-start-column="66" selection-end-line="102" selection-end-column="66" />
+            <state relative-caret-position="287">
+              <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
               <folding>
                 <element signature="e#17#26#0" expanded="true" />
                 <element signature="e#482#994#0" expanded="false" />
@@ -794,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484554572315</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="qingdao menu modify">
+      <created>1484556609433</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1484556609433</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -886,7 +886,8 @@
     <MESSAGE value="page" />
     <MESSAGE value="qingdao ocr" />
     <MESSAGE value="qingdao bill search" />
-    <option name="LAST_COMMIT_MESSAGE" value="qingdao bill search" />
+    <MESSAGE value="qingdao menu modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="qingdao menu modify" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1341,8 +1342,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/wharf/qingdao.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="102" column="66" selection-start-line="102" selection-start-column="66" selection-end-line="102" selection-end-column="66" />
+        <state relative-caret-position="287">
+          <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
           <folding>
             <element signature="e#17#26#0" expanded="true" />
             <element signature="e#482#994#0" expanded="false" />
