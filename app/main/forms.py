@@ -9,10 +9,16 @@ from .. import wharf
 from .. import express
 
 
-class WharfForm(FlaskForm):
-    port = SelectField(u"船公司", choices=[(s, str.upper(s)) for s in wharf.sources])
+class WharfShipForm(FlaskForm):
+    port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
     vessel = StringField(u"船名")
     voyage = StringField(u"航次")
+    submit = SubmitField(u"查  询")
+
+
+class WharfBillForm(FlaskForm):
+    port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
+    bill = StringField(u"提单号")
     submit = SubmitField(u"查  询")
 
 

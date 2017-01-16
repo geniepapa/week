@@ -12,7 +12,7 @@ from ..wharf import sources as wharf_sources
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    return wharf()
+    return shipping()
 
 
 @main.route('/shipping', methods=['GET', 'POST'])
@@ -28,16 +28,30 @@ def shipping():
     return render_template('shipping.html', form=form, info=info)
 
 
-@main.route('/wharf', methods=['GET', 'POST'])
-def wharf():
+@main.route('/wharf/ship', methods=['GET', 'POST'])
+def wharf_ship():
     form = WharfForm()
     info = None
     if form.validate_on_submit():
         if form.vessel.data == '':
-            info = wharf_sources[form.port.data.encode("utf-8")] .grab()
+            info = wharf_sources[form.port.data.encode("utf-8")] .grab_ship()
         else:
             info = wharf_sources[form.port.data.encode("utf-8")]\
-                .grab(form.vessel.data.encode("utf-8"), form.voyage.data.encode("utf-8"))
+                .grab_ship(form.vessel.data.encode("utf-8"), form.voyage.data.encode("utf-8"))
+
+    return render_template('wharf.html', form=form, info=info)
+
+
+@main.route('/wharf/bill', methods=['GET', 'POST'])
+def wharf_bill():
+    form = WharfForm()
+    info = None
+    if form.validate_on_submit():
+        if form.vessel.data == '':
+            info = wharf_sources[form.port.data.encode("utf-8")] .grab_bill()
+        else:
+            info = wharf_sources[form.port.data.encode("utf-8")]\
+                .grab_bill(form.bill.data.encode("utf-8"))
 
     return render_template('wharf.html', form=form, info=info)
 

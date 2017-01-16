@@ -15,10 +15,19 @@
                                         <span class="selected"></span>
                                     </a>
                                 </li>
-                                <li class="nav-item  active open">
-                                    <a href="wharf" class="nav-link ">
+                                <li class="nav-item   active open">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
                                         <span class="title">码头</span>
+                                        <span class="arrow"></span>
                                     </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item ">
+                                            <a href="wharf/ship" class="nav-link ">单船查询</a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="wharf/bill" class="nav-link ">单票查询</a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="yard" class="nav-link ">
@@ -37,23 +46,6 @@
 {% endblock %}
 
 {% block pagecontent %}
-    <!--
-     <div class="row">
-         <div class="col-lg-6 col-xs-12 col-sm-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <span>例：JI HAI ZHI XING(船名) 16084S(航次)</span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    <div class="row">
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-warning">
-            {{ message }}
-        </div>
-    {% endfor %}
-    </div>
     <div class="row">
         <div class="col-lg-6 col-xs-12 col-sm-12">
             <div class="portlet light portlet-fit">
@@ -85,10 +77,40 @@
     </div>
     {% if info %}
      <div class="row">
-        <div class="col-lg-6 col-xs-12 col-sm-12">
+        <div class="col-lg-10 col-xs-12 col-sm-12">
             <div class="portlet light portlet-fit bordered ">
                 <div class="portlet-body">
-                       <cod>{{ info }}</cod>
+                    <table class="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th> 码头名称 </th>
+                                    <th> 预计到港时间 </th>
+                                    <th> 预计离港时间 </th>
+                                    <th> 实际到港时间 </th>
+                                    <th> 实际离港时间 </th>
+                                    <th> 抵港状态 </th>
+                                    <th> 泊位 </th>
+                                    <th> 关区 </th>
+                                    <th> 承运人 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for mtcq in info['mtcqList']  %}
+                                <tr>
+                                    <td> {{ mtcq['MTMC'] }}</td>
+                                    <td>  {{ mtcq['ETA']  }} </td>
+                                    <td> {{ mtcq['ETD']  }}</td>
+                                    <td> {{ mtcq['SJDGSJ']  }}</td>
+                                    <td> {{ mtcq['SJLGSJ']  }}</td>
+                                    <td> <span class="label label-sm label-success">{{ mtcq['DGBZMC'] }}</span></td>
+                                    <td> {{ mtcq['BWDM1']  }}</td>
+                                    <td> {{ mtcq['GQDM']  }}</td>
+                                    <td> {{ mtcq['CYR']  }}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
                  </div>
             </div>
         </div>
