@@ -35,13 +35,6 @@ def grab(bl_num='958586127'):
     # elem_submit.click()
 
 
-
-
-
-
-
-
-
     # driver.close()
 
     return info
