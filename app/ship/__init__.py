@@ -1,5 +1,4 @@
-from app.ship import apl
-from . import ckline, cma, cosco, cscl, evergreen, msc
+from . import ckline, cma, cosco, cscl, evergreen, msc, apl
 
 sources = {
     'apl': apl,

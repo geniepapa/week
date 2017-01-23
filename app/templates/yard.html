@@ -10,23 +10,32 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="shipping" class="nav-link ">
+                                    <a href="/shipping" class="nav-link ">
                                         <span class="title">船公司</span>
                                         <span class="selected"></span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="wharf" class="nav-link ">
+                                <li class="nav-item ">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
                                         <span class="title">码头</span>
+                                        <span class="arrow"></span>
                                     </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item ">
+                                            <a href="/wharf/ship" class="nav-link ">单船查询</a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="/wharf/bill" class="nav-link ">单票查询</a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item   active open">
-                                    <a href="yard" class="nav-link ">
+                                    <a href="/yard" class="nav-link ">
                                         <span class="title">堆场</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="express" class="nav-link ">
+                                    <a href="/express" class="nav-link ">
                                         <span class="title">快递</span>
                                     </a>
                                 </li>
@@ -34,4 +43,45 @@
                             </ul>
                         </li>
                     </ul>
+{% endblock %}
+
+
+{% block pagecontent %}
+    <div class="row">
+        <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="portlet light portlet-fit">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-directions font-green hide"></i>
+                        <form method="POST" role="form">
+                            {{ form.hidden_tag()}}
+                            <div class="row">
+
+                                <div class="col-md-4 col-xs-4">
+                                    {{  form.yard_name(class="form-control",placeholder="堆场") }}
+                                </div>
+                                <div class="col-md-6 col-xs-6">
+                                    {{  form.bill_number(class="form-control",placeholder="提单号") }}
+                                </div>
+                                <div class="col-md-2  col-xs-2">
+                                    {{ form.submit(class='btn  green btn-outline btn-circle btn-sm') }}
+                                </div>
+                            </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if info %}
+     <div class="row">
+        <div class="col-lg-12 col-xs-12 col-sm-12">
+            <div class="portlet light portlet-fit bordered">
+                 <div class="portlet-body">
+                {{ info | safe }}
+                 </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

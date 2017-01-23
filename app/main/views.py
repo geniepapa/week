@@ -1,13 +1,12 @@
 # coding: utf-8
 
 from flask import render_template
-
-
-from ..ship import sources as ship_sources
-from forms import WharfBillForm, WharfShipForm, ShippingForm, ExpressForm
 from . import main
+from forms import WharfBillForm, WharfShipForm, ShippingForm, ExpressForm, YardForm
+from ..ship import sources as ship_sources
 from ..express import sources as express_sources
 from ..wharf import sources as wharf_sources
+from ..yard import sources as yard_sources
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -58,7 +57,15 @@ def wharf_bill():
 
 @main.route('/yard', methods=['GET', 'POST'])
 def yard():
-    return render_template('yard.html')
+    form = YardForm()
+    info = None
+    if form.validate_on_submit():
+        if form.bill_number.data == '':
+            info = yard_sources[form.yard_name.data].grab()
+        else:
+            info = yard_sources[form.yard_name.data].grab(form.bill_number.data.encode("utf-8"))
+
+    return render_template('yard.html', form=form, info=info)
 
 
 @main.route('/express', methods=['GET', 'POST'])

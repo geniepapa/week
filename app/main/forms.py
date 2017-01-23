@@ -7,6 +7,7 @@ from wtforms.validators import DataRequired
 from .. import ship
 from .. import wharf
 from .. import express
+from .. import yard
 
 
 class WharfShipForm(FlaskForm):
@@ -31,4 +32,10 @@ class ShippingForm(FlaskForm):
 class ExpressForm(FlaskForm):
     express_name = SelectField(u"快递公司", choices=[(s, str.upper(s)) for s in express.sources] )
     express_number = StringField(u"快递单号")
+    submit = SubmitField(u"查  询")
+
+
+class YardForm(FlaskForm):
+    yard_name = SelectField(u"堆场", choices=[(s, s) for s in yard.sources])
+    bill_number = StringField(u"提单号")
     submit = SubmitField(u"查  询")

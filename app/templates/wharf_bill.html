@@ -56,10 +56,10 @@
                             {{ form.hidden_tag()}}
                             <div class="row">
 
-                                <div class="col-md-3 col-xs-3">
+                                <div class="col-md-4 col-xs-4">
                                     {{  form.port(class="form-control",placeholder="港口") }}
                                 </div>
-                                <div class="col-md-4 col-xs-4">
+                                <div class="col-md-6 col-xs-6">
                                     {{  form.bill(class="form-control",placeholder="提单号") }}
                                 </div>
                                 <div class="col-md-2  col-xs-2">
@@ -220,7 +220,7 @@
                  </div>
             </div>
 
-            <!--<div class="portlet light portlet-fit bordered ">
+            <div class="portlet light portlet-fit bordered ">
                 <div class="portlet-title">
                     <span class="caption-subject bold uppercase font-dark">报关单放行</span>
                 </div>
@@ -228,19 +228,45 @@
                     <table class="table table-hover table-light">
                             <thead>
                                 <tr>
-                                    <th> 码头名称 </th>
-                                    <th> 预计到港时间 </th>
-                                    <th> 预计离港时间 </th>
-                                    <th> 实际到港时间 </th>
-                                    <th> 实际离港时间 </th>
-                                    <th> 抵港状态 </th>
-                                    <th> 泊位 </th>
-                                    <th> 关区 </th>
-                                    <th> 承运人 </th>
+
+                                    <th> 英文船名 </th>
+                                    <th> 航次 </th>
+                                    <th> IMO号 </th>
+
+                                    <th> 关区代码 </th>
+                                    <th> 报关单号 </th>
+                                    <th> 分提单号 </th>
+                                    <th> 放行时间 </th>
+                                    <th> 放行件数 </th>
+                                    <th> 箱号 </th>
+                                    <th> 净重 </th>
+                                    <th> 毛重 </th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
-                                bgdfx in info['bgdfxList']
+                                {% for  bgdfx in info['bgdfxList'] %}
+                                    <tr>
+
+                                        <td> {{ bgdfx['FLAGHT_NO'] }}</td>
+                                        <td> {{ bgdfx['VOYAGE_NO'] }}</td>
+                                        <td> {{ bgdfx['CIMO'] }}</td>
+
+                                        <td> {{ bgdfx['I_E_PORT'] }}</td>
+                                        <td> {{ bgdfx['ENTRY_ID'] }}</td>
+                                        <td> {{ bgdfx['BILL_NO'] }}</td>
+                                        <td> {{ bgdfx['R_DATE'] }}</td>
+                                        <td> {{ bgdfx['PASS_PACK_NO'] }}</td>
+                                        <td> {{ bgdfx['CONTA_ID'] }}</td>
+                                        <td> {{ bgdfx['NET_WT'] }}</td>
+                                        <td> {{ bgdfx['GROS_WT'] }}</td>
+
+
+
+                                    </tr>
+                                {% endfor %}
+
                             </tbody>
                         </table>
                  </div>
@@ -254,30 +280,34 @@
                     <table class="table table-hover table-light">
                             <thead>
                                 <tr>
-                                    <th> 码头名称 </th>
-                                    <th> 预计到港时间 </th>
-                                    <th> 预计离港时间 </th>
-                                    <th> 实际到港时间 </th>
-                                    <th> 实际离港时间 </th>
-                                    <th> 抵港状态 </th>
-                                    <th> 泊位 </th>
-                                    <th> 关区 </th>
-                                    <th> 承运人 </th>
+                                    <th> 英文船名 </th>
+                                    <th> 航次 </th>
+                                    <th> IMO号 </th>
+                                    <th> 箱号 </th>
+                                    <th> 放行类别 </th>
+                                    <th> 放行时间 </th>
+                                    <th> 海关指令 </th>
+                                    <th> 接受时间 </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                zzfx in info['zzfxList']
+                             {% for  zzfx in info['zzfxList'] %}
+                                <tr>
+                                    <td> {{ zzfx['YWCM'] }}</td>
+                                    <td> {{ zzfx['HCHC'] }}</td>
+                                    <td> {{ zzfx['CIMO'] }}</td>
+                                    <td> {{ zzfx['XH'] }}</td>
+                                    <td> {{ zzfx['FXLBMC'] }}</td>
+                                    <td> {{ zzfx['RDATE'] }}</td>
+                                    <td> <span class="label label-sm label-success">{{ zzfx['SCBZMC'] }}</span></td>
+                                    <td> {{ zzfx['IMPORT_TIME'] }}</td>
+                                </tr>
+                             {% endfor %}
                             </tbody>
                         </table>
                  </div>
-            </div>-->
-            <div class="portlet light portlet-fit bordered ">
-
-                <div class="portlet-body">
-
-                    <cod>{{ info }}</cod>
-                 </div>
             </div>
+
         </div>
     </div>
     {% endif %}
