@@ -23,6 +23,11 @@ def grab(bl_num='PASU5136409630'):
     info_html = html.xpath("//form/div")
 
     if len(info_html) > 1:
+
+        elem_links = info_html[1].xpath("//a")
+        for elem_link in elem_links:
+            elem_link.set("href", "#")
+
         info = etree.tostring(info_html[1], pretty_print=True)
     else:
         info = None
