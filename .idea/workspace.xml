@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fce9b594-b271-4985-b502-733c27c42338" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ship/cosco.py" afterPath="$PROJECT_DIR$/app/ship/cosco.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/wharf_ship.html" afterPath="$PROJECT_DIR$/app/templates/wharf_ship.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/wharf/qingdao.py" afterPath="$PROJECT_DIR$/app/wharf/qingdao.py" />
     </list>
     <ignored path="Week.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -919,7 +916,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485397250036</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="cosco">
+      <created>1486449033302</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1486449033302</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1005,7 +1009,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cosco" />
     <MESSAGE value="cscl&amp;evergreen" />
     <MESSAGE value="msc &#10;maerskline ocr modify" />
     <MESSAGE value="page" />
@@ -1017,7 +1020,8 @@
     <MESSAGE value="modify the shipping template" />
     <MESSAGE value="to add the stky yard&#10;" />
     <MESSAGE value="to add the  yards &#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="to add the  yards &#10;" />
+    <MESSAGE value="cosco" />
+    <option name="LAST_COMMIT_MESSAGE" value="cosco" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
