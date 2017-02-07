@@ -78,10 +78,10 @@ def search(url, query):
                 eval_code = 0
 
             data = {
-                #'userName': '18250717925',
-                'userName': 'geniepapa@gmail.com',
-                #'passWord': 'Yaitoo.951',
-                'passWord': 'liuyang_902',
+                'userName': '18250717925',
+                #'userName': 'geniepapa@gmail.com',
+                'passWord': 'Yaitoo.951',
+                #'passWord': 'liuyang_902',
                 'code': eval_code
             }
 
@@ -89,11 +89,13 @@ def search(url, query):
 
             json_login = json.loads(unicode.encode(login_ajax_response.text, encoding='utf-8'))
 
+
             if json_login["success"] == True:
                 qingdao_session.get("http://www.qingdao-port.net")
                 qingdao_session.get(url)
                 result_response = qingdao_session.post(query)
                 result = json.loads(unicode.encode(result_response.text, encoding='utf-8'))
+                # print unicode.encode(result_response.text, encoding='utf-8')
                 qingdao_session.get("http://www.qingdao-port.net/page/logout.do")
                 break
             elif len(json_login) > 2:

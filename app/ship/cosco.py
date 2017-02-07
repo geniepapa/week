@@ -26,6 +26,8 @@ def grab(bl_num='8013296880'):
 
     response = session.post(content_url, data=data, headers=headers)
 
+    # print response.text
+
     if response.status_code == 200:
         return html_parse(response)
 
@@ -72,7 +74,7 @@ def get_routes(routes_doc):
             'voyage': route_td[1].getchildren()[0].text.strip(),
             'call_sign': '',
             'estimate_arrival_date': route_td[7].getchildren()[0].text.strip(),
-            'actual_arrival_date': route_td[8].getchildren()[0].text.strip(),
+            'actual_arrival_date': route_td[8].getchildren()[0].text,
             'container_load_date': '',
             'container_discharge_date': '',
             'estimate_departure_date': '',
