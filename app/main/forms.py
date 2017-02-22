@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, RadioField
 from wtforms.validators import DataRequired
 
 from .. import ship
@@ -19,6 +19,7 @@ class WharfShipForm(FlaskForm):
 
 class WharfBillForm(FlaskForm):
     port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
+    type = SelectField(u"港口", choices=[('NONE', u"出口"),('JK', u"进口" )])
     bill = StringField(u"提单号")
     submit = SubmitField(u"查  询")
 

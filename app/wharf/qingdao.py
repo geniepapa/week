@@ -52,10 +52,12 @@ def grab_ship(vessel='JI HAI ZHI XING', voyage='15007N'):
     return search(url, query)
 
 
-def grab_bill(bill='PASU5136190180'):
+def grab_bill(bill='PASU5136190180', type='NONE'):
     url = "http://track.qingdao-port.net/wmdp"
-    query = "http://track.qingdao-port.net/logistics/wmdp/queryWmdp?tdhType=ZTDH&jckType=NONE&value="+bill
+    query = "http://track.qingdao-port.net/logistics/wmdp/queryWmdp?tdhType=ZTDH&jckType="+type+"&value="+bill
     return search(url, query)
+
+
 
 
 def search(url, query):
@@ -78,10 +80,10 @@ def search(url, query):
                 eval_code = 0
 
             data = {
-                'userName': '18250717925',
-                #'userName': 'geniepapa@gmail.com',
-                'passWord': 'Yaitoo.951',
-                #'passWord': 'liuyang_902',
+                #'userName': '18250717925',
+                'userName': 'geniepapa@gmail.com',
+                #'passWord': 'Yaitoo.951',
+                'passWord': 'liuyang_902',
                 'code': eval_code
             }
 

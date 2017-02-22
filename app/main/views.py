@@ -50,7 +50,7 @@ def wharf_bill():
             info = wharf_sources[form.port.data.encode("utf-8")] .grab_bill()
         else:
             info = wharf_sources[form.port.data.encode("utf-8")]\
-                .grab_bill(form.bill.data.encode("utf-8"))
+                .grab_bill(form.bill.data.encode("utf-8"), form.type.data.encode("utf-8"))
 
     return render_template('wharf_bill.html', form=form, info=info)
 

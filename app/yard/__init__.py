@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from . import evergreen, yydy, stky, jf, glj, lh, yzh, wy, zh, glr, mzdg, gl, gw, jh, mj, szx, ss, zc, jz
+from . import evergreen, yydy, stky, jf, glj, lh, yzh, wy, zh, glr, mzdg, gl, gw, jh, mj, szx, ss, zc, jz, glx
 
 sources = {
     u"长荣": evergreen,
@@ -21,5 +21,6 @@ sources = {
     u'神州行': szx,
     u'胜狮': ss,
     u'中创': zc,
-    u'胶州':jz
+    u'胶州': jz,
+    u'港联欣': glx
 }

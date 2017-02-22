@@ -47,7 +47,7 @@
 
 {% block pagecontent %}
     <div class="row">
-        <div class="col-lg-6 col-xs-12 col-sm-12">
+        <div class="col-lg-8 col-xs-12 col-sm-12">
             <div class="portlet light portlet-fit">
                 <div class="portlet-title">
                     <div class="caption">
@@ -56,11 +56,14 @@
                             {{ form.hidden_tag()}}
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4">
+                                <div class="col-md-3 col-xs-3">
                                     {{  form.port(class="form-control",placeholder="港口") }}
                                 </div>
-                                <div class="col-md-6 col-xs-6">
-                                    {{  form.bill(class="form-control",placeholder="提单号") }}
+                                <div class="col-md-3 col-xs-3">
+                                    {{  form.type(class="form-control",placeholder="进出口") }}
+                                </div>
+                                <div class="col-md-4 col-xs-4">
+                                    {{  form.bill(class="form-control",placeholder="提单号")}}
                                 </div>
                                 <div class="col-md-2  col-xs-2">
                                     {{ form.submit(class='btn  green btn-outline btn-circle btn-sm') }}
