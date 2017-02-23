@@ -80,10 +80,10 @@ def search(url, query):
                 eval_code = 0
 
             data = {
-                #'userName': '18250717925',
-                'userName': 'geniepapa@gmail.com',
-                #'passWord': 'Yaitoo.951',
-                'passWord': 'liuyang_902',
+                'userName': '18250717925',
+                #'userName': 'geniepapa@gmail.com',
+                'passWord': 'Yaitoo.951',
+                #'passWord': 'liuyang_902',
                 'code': eval_code
             }
 
