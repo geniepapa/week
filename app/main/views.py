@@ -33,9 +33,12 @@ def wharf_ship():
     info = None
     if form.validate_on_submit():
         if form.vessel.data == '':
-            info = wharf_sources[form.port.data.encode("utf-8")] .grab_ship()
+            # info = wharf_sources[form.port.data.encode("utf-8")] .grab_ship()
+            info = wharf_sources['qingdao'].grab_ship()
         else:
-            info = wharf_sources[form.port.data.encode("utf-8")]\
+            # info = wharf_sources[form.port.data.encode("utf-8")]\
+            #    .grab_ship(form.vessel.data.encode("utf-8"), form.voyage.data.encode("utf-8"))
+            info = wharf_sources['qingdao'] \
                 .grab_ship(form.vessel.data.encode("utf-8"), form.voyage.data.encode("utf-8"))
 
     return render_template('wharf_ship.html', form=form, info=info)
@@ -47,10 +50,14 @@ def wharf_bill():
     info = None
     if form.validate_on_submit():
         if form.bill.data == '':
-            info = wharf_sources[form.port.data.encode("utf-8")] .grab_bill()
+            # info = wharf_sources[form.port.data.encode("utf-8")] .grab_bill()
+            info = wharf_sources['qingdao'].grab_bill()
         else:
-            info = wharf_sources[form.port.data.encode("utf-8")]\
-                .grab_bill(form.bill.data.encode("utf-8"), form.type.data.encode("utf-8"))
+            # info = wharf_sources[form.port.data.encode("utf-8")]\
+            #    .grab_bill(form.bill.data.encode("utf-8"), form.port_type.data.encode("utf-8"))
+            info = wharf_sources['qingdao'].grab_bill(form.port_type.data.encode("utf-8"),
+                                                      form.bill_type.data.encode("utf-8"),
+                                                      form.bill.data.encode("utf-8"))
 
     return render_template('wharf_bill.html', form=form, info=info)
 

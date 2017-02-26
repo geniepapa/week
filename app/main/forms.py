@@ -11,15 +11,16 @@ from .. import yard
 
 
 class WharfShipForm(FlaskForm):
-    port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
+    # port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
     vessel = StringField(u"船名")
     voyage = StringField(u"航次")
     submit = SubmitField(u"查  询")
 
 
 class WharfBillForm(FlaskForm):
-    port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
-    type = SelectField(u"港口", choices=[('NONE', u"出口"),('JK', u"进口" )])
+    # port = SelectField(u"港口", choices=[(s, str.upper(s)) for s in wharf.sources])
+    port_type = SelectField(u"进出口", choices=[('NONE', u"出口"),('JK', u"进口" )])
+    bill_type = SelectField(u"提单类型", choices=[('ZTDH', u"主单"),('FTDH', u"分单" )])
     bill = StringField(u"提单号")
     submit = SubmitField(u"查  询")
 
