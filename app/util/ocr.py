@@ -43,6 +43,108 @@ def get_image_raw(path, url):
 
     cv2.imwrite(path, img_threshold)
 
+def get_image_by_color(path):
+
+    image = cv2.imread("5.png")
+    # 去背景
+    for i, row in enumerate(image):
+        for j, cell in enumerate(row):
+            if (image[0, 1] == image[i, j]).all() or (image[34, 1] == image[i, j]).all():
+                if (i == 0 and j == 1) or (i == 34 and j == 1):
+                    continue
+                image[i, j] = [255, 255, 255]
+
+    # 转换HSV
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+    # 去掉其他颜色
+    for i, row in enumerate(hsv):
+        for j, cell in enumerate(row):
+            if image[i, j][0] >= 200:
+                pass
+            else:
+                hsv[i, j] = [0, 0, 255]
+
+    img = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+    # 腐蚀
+    kernel = np.ones((1, 2), np.uint8)
+    img_erode = cv2.erode(img, kernel)
+    # 灰度
+    gray = cv2.cvtColor(img_erode, cv2.COLOR_BGR2GRAY)
+    # 二值化
+    ret, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+
+    kernel = np.ones((2, 1), np.uint8)
+    img_erode2 = cv2.dilate(binary, kernel)
+
+    # 反色
+
+    for i, row in enumerate(img_erode2):
+        for j, cell in enumerate(row):
+            img_erode2[i, j] = 255 - img_erode2[i, j]
+    for j in range(89):
+        for i in range(34/2):
+            if img_erode2[i+1, j] == 0:
+                img_erode2[i, j] = 255
+                img_erode2[i + 1, j] = 255
+            else:
+                break
+        for i in range(34 / 2):
+            if img_erode2[34 - i - 1, j] == 0:
+                img_erode2[34 - i, j] = 255
+                img_erode2[34 - i - 1, j] = 255
+            else:
+                break
+    '''
+    kernel = np.ones((2, 2), np.uint8)
+    img_erode3 = cv2.erode(img_erode2, kernel)
+
+    kernel = np.ones((2, 2), np.uint8)
+    img_erode4 = cv2.dilate(img_erode3, kernel)
+
+    kernel = np.ones((2, 2), np.uint8)
+    img_erode5 = cv2.erode(img_erode4, kernel)
+
+    kernel = np.ones((2, 2), np.uint8)
+    img_erode6 = cv2.dilate(img_erode5, kernel)
+    '''
+
+    '''
+    for i, row in enumerate(img_erode2):
+        for j, cell in enumerate(row):
+            if i < 34 and j < 89 and \
+                            img_erode2[i, j] == 0 and img_erode2[i+1, j] == 0 and \
+                            img_erode2[i, j+1] == 0 and img_erode2[i+1, j+1] == 0:
+                img_erode2[i, j] = 255
+    '''
+
+
+    # 轮廓
+    # contours = cv2.findContours(img_erode2, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    # cv2.drawContours(img_erode2, contours[1], -1, (255, 255, 255), 1)
+
+    '''
+        kernel = np.ones((2, 2), np.uint8)
+        img_erode2 = cv2.erode(binary, kernel)
+
+
+        # 轮廓
+        contours = cv2.findContours(img_erode2, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        result_image = cv2.drawContours(binary, contours[1], -1, (0, 0, 255), 1)
+
+        cv2.imwrite("2.png", img_erode2)
+
+        # image_to_string("3.png", lang="chi_sim")
+        # print result
+    '''
+    cv2.imwrite("2.png", img_erode2)
+    image_to_string("2.png")
+    cv2.imshow('image', img_erode2)
+    cv2.waitKey(0)
+
+
+
 
 def get_image_from_response(path, response):
     img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
@@ -112,5 +214,6 @@ def ocr_url(url):
     return result
 
 if __name__ == '__main__':
-   capatch = ocr_url("http://www.qingdao-port.net/market/getKaptchaImage.do?timestamp=1484223010551")
+    result = image_to_string("2.png")
+    print result
 

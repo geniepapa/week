@@ -503,6 +503,93 @@
                             </table>
                      </div>
                 </div>
+
+
+                <div class="portlet light portlet-fit bordered ">
+                    <div class="portlet-title">
+                        <span class="caption-subject bold uppercase font-dark">外理审核放行</span>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-hover table-light">
+                                <thead>
+                                    <tr>
+                                        <th> 码头名称 </th>
+                                        <th> 提单号 </th>
+                                        <th> 英文船名 </th>
+                                        <th> 航次 </th>
+                                        <th> IMO号 </th>
+                                        <th> 关区 </th>
+                                        <th> 箱号 </th>
+                                        <th> 分单号 </th>
+                                        <th> 审核时间 </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for wlsh in info['wlshList']  %}
+                                    <tr>
+                                        <td> {{ wlsh['MTMC'] }}</td>
+                                        <td>  {{ wlsh['MAIN_BILL_NO']  }} </td>
+                                        <td> {{ wlsh['YWCM'] }}</td>
+                                        <td>  {{ wlsh['HC']  }} </td>
+                                        <td> {{ wlsh['CIMO']  }}</td>
+                                        <td> {{ wlsh['GQDM']  }}</td>
+                                        <td> {{ wlsh['XH']  }}</td>
+                                        <td>{{ wlsh['BILL_NO'] }}</td>
+                                        <td> {{ wlsh['IMPORT_TIME']  }}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                     </div>
+                </div>
+                <div class="portlet light portlet-fit bordered ">
+                    <div class="portlet-title">
+                        <span class="caption-subject bold uppercase font-dark">外理理货报告</span>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-hover table-light">
+                                <thead>
+                                    <tr>
+                                        <th> 提单号 </th>
+                                        <th> 英文船名 </th>
+                                        <th> 航次 </th>
+                                        <th> IMO号 </th>
+                                        <th> 关区 </th>
+                                        <th> 箱号 </th>
+                                        <th> 件数 </th>
+                                        <th> 重量 </th>
+                                        <th> 体积 </th>
+                                        <th> 发送时间 </th>
+                                        <th> 回执说明 </th>
+                                        <th> 回执时间 </th>
+                                        <th> 理货说明 </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 {% for  wllh in info['wllhList'] %}
+                                    <tr>
+                                        <td> {{ wllh['BILL_NO'] }}</td>
+                                        <td> {{ wllh['TRANSPORT_TOOL_NAME'] }}</td>
+                                        <td> {{ wllh['VESSEL_VOYAGE_NUMBER'] }}</td>
+                                        <td> {{ wllh['TRANSPORT_TOOL_COD'] }}</td>
+                                        <td> {{ wllh['DECLARE_CUSTOMS_COD'] }}</td>
+                                        <td> {{ wllh['CONT_NO'] }}</td>
+                                        <td> {{ wllh['CARGO_NUMBER'] }}</td>
+                                        <td> {{ wllh['CARGO_TOTAL_GROSS_WEIGHT'] }}</td>
+                                        <td> {{ wllh['CARGO_CUBE'] }}</td>
+                                        <td> {{ wllh['EDI_FILE_READ_TIME'] }}</td>
+
+                                        <td> {{ wllh['RESPONSE_CONT_MSG'] }}</td>
+                                        <td> {{ wllh['RESPONSE_CONT_FILE_TIME'] }}</td>
+
+                                        <td> {{ wllh['LHLB'] }}</td>
+                                    </tr>
+                                 {% endfor %}
+                                </tbody>
+                            </table>
+                     </div>
+                </div>
             {% endif %}
 
         </div>
