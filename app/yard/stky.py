@@ -28,7 +28,8 @@ def grab(bl_num='TNCQD204IMM505'):
         elem_a = info_html[0].find("a")
 
         info_html[0].remove(elem_form)
-        info_html[0].remove(elem_a)
+        if elem_a:
+            info_html[0].remove(elem_a)
 
         info = etree.tostring(info_html[0], pretty_print=True)
     else:
